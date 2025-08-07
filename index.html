@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matriz Curricular Interativa - Engenharia Civil (v2.2)</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="lines-hidden">
+    <div class="p-4 md:p-8">
+        <header class="text-center mb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">Matriz Curricular Interativa</h1>
+            <p class="text-lg text-gray-600 mt-2">Engenharia Civil - CEFET/MG Campus Curvelo</p>
+        </header>
+
+        <div class="flex flex-col md:flex-row gap-4 mb-8">
+            <div class="flex-grow bg-white p-3 rounded-lg shadow-md">
+                <div class="flex flex-wrap justify-center sm:justify-start items-center gap-x-4 gap-y-2 text-xs text-gray-700">
+                    <span class="font-bold">Eixos:</span>
+                    <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full bg-blue-500"></div><span>Matemática</span></div>
+                    <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full bg-red-500"></div><span>Física e Química</span></div>
+                    <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full bg-green-500"></div><span>Computação</span></div>
+                    <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full bg-yellow-400"></div><span>Humanidades</span></div>
+                    <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full bg-orange-500"></div><span>Construção Civil</span></div>
+                    <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full bg-slate-600"></div><span>Estruturas/Geotecnia</span></div>
+                    <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full bg-indigo-500"></div><span>Expressão Gráfica</span></div>
+                    <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full bg-teal-500"></div><span>Hidrotecnia/Amb.</span></div>
+                    <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full bg-amber-800"></div><span>Prática Profissional</span></div>
+                </div>
+                <div class="border-t border-gray-200 my-2"></div>
+                <div class="flex flex-wrap justify-center sm:justify-start items-center gap-x-4 gap-y-2 text-xs text-gray-700">
+                    <span class="font-bold">Dependências:</span>
+                    <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full border legend-prereq"></div><span>Pré-req.</span></div>
+                    <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full border legend-coreq"></div><span>Co-req.</span></div>
+                    <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full border legend-successor-l1"></div><span>Dep. Diretas</span></div>
+                    <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full border legend-successor-l2"></div><span>Dep. Indiretas</span></div>
+                </div>
+            </div>
+
+            <div class="flex-shrink-0 bg-white p-3 rounded-lg shadow-md flex items-center justify-center gap-2">
+                <button id="toggle-lines-btn" class="action-btn" title="Mostrar/Ocultar Conexões" aria-label="Mostrar ou ocultar linhas de conexão">
+                    <svg id="icon-link-on" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 hidden"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" /></svg>
+                    <svg id="icon-link-off" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" /><path stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18" /></svg>                          
+                </button>
+                <button id="theme-toggle-btn" class="action-btn" title="Alternar Tema" aria-label="Alternar tema claro e escuro">
+                    <svg id="theme-icon-sun" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                    <svg id="theme-icon-moon" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                </button>
+                <button id="help-btn" class="action-btn" title="Ajuda e Instruções de Uso" aria-label="Abrir modal de ajuda">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="grid-container" class="relative w-full bg-white p-4 rounded-xl shadow-lg">
+             <div id="curriculum-grid" class="grid grid-cols-10 gap-2"></div>
+             <svg id="svg-overlay"></svg>
+        </div>
+    </div>
+
+    <div id="course-modal" class="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50 hidden p-4" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="bg-white rounded-2xl shadow-2xl w-full md:w-3/4 lg:w-2/3 max-h-[90vh] flex flex-col transform transition-all duration-300 scale-95 opacity-0">
+            <header class="p-6 border-b border-gray-200 flex justify-between items-center flex-shrink-0">
+                <h2 id="modal-title" class="text-xl md:text-2xl font-bold"></h2>
+                <button data-close-modal="course-modal" class="text-gray-500 hover:text-gray-800 text-3xl" aria-label="Fechar modal">&times;</button>
+            </header>
+            <div id="modal-content" class="p-6 overflow-y-auto"></div>
+        </div>
+    </div>
+
+    <div id="help-modal" class="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50 hidden p-4" role="dialog" aria-modal="true" aria-labelledby="help-modal-title" aria-hidden="true">
+        <div class="bg-white rounded-2xl shadow-2xl w-full sm:w-2/3 md:w-1/2 lg:w-2/3 max-w-3xl transform transition-all duration-300 scale-95 opacity-0">
+            <header class="p-6 border-b border-gray-200 flex justify-between items-center">
+                <h2 id="help-modal-title" class="text-xl md:text-2xl font-bold text-gray-800">Como Usar a Matriz Interativa</h2>
+                <button data-close-modal="help-modal" class="text-gray-500 hover:text-gray-800 text-3xl" aria-label="Fechar modal">&times;</button>
+            </header>
+            <div id="help-modal-content" class="p-6 space-y-6">
+                </div>
+        </div>
+    </div>
+    
+    <footer class="fixed bottom-3 right-4 text-xs text-gray-500 dark:text-gray-600">Criado por Prof.ª Carolina Vieira e Prof. Ezequiel Lima com o auxílio de Gemini @2025</footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/data.js"></script>
+</body>
+</html>
