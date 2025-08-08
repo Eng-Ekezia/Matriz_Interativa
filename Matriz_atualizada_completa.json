@@ -1,4 +1,10 @@
 {
+  "version": "1.0",
+  "courseInfo": {
+    "title": "Matriz Curricular Interativa",
+    "name": "Engenharia Civil",
+    "institution": "CEFET/MG Campus Curvelo"
+  },
   "totalPeriods": 10,
   "courses": [
     {

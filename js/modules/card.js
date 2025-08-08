@@ -3,9 +3,12 @@
 
 import * as DOM from './dom.js';
 import { state } from './state.js';
-import { AXIS_COLORS } from './config.js';
-import { openModal } from './modal.js'; // Será criado no próximo passo
-import { highlightDependencies, clearDependencyHighlights } from './events.js'; // Será criado no próximo passo
+import { openModal } from './modal.js';
+import { highlightDependencies, clearDependencyHighlights } from './events.js';
+import { getTextColorForBackground, getRgbColorFromTailwindClass } from './utils.js';
+
+// Cache para armazenar as cores já calculadas e evitar reprocessamento.
+const colorCache = new Map();
 
 /**
  * Cria o elemento HTML para uma única disciplina.
@@ -14,15 +17,25 @@ import { highlightDependencies, clearDependencyHighlights } from './events.js'; 
  */
 function createCourseCard(course) {
     const card = document.createElement('div');
-    const colors = AXIS_COLORS[course.eixo] || { bg: "bg-gray-500", text: "text-white", border: "border-gray-700" };
-    card.className = `card p-2 rounded-lg shadow-sm border-2 ${colors.text} ${colors.bg} ${colors.border}`;
+    const colors = state.axisConfig[course.eixo] || { bg: "bg-gray-500", border: "border-gray-700" };
+    
+    // Solução Inteligente:
+    // 1. Pega a cor RGB da classe de fundo.
+    const rgbColor = getRgbColorFromTailwindClass(colors.bg);
+    // 2. Calcula a melhor cor de texto para o contraste.
+    const textColor = getTextColorForBackground(rgbColor);
+
+    // Verifica se a disciplina é optativa para adicionar a borda tracejada.
+    const borderStyle = course.tipo === 'Optativa' ? ' border-dashed' : '';
+
+    card.className = `card p-2 rounded-lg shadow-sm border-2 ${textColor} ${colors.bg} ${colors.border}${borderStyle}`;
     card.dataset.id = course.id;
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
     card.setAttribute('aria-label', `Disciplina: ${course.nome}. Carga horária: ${course.ch}`);
     
     const chDiv = document.createElement('div');
-    chDiv.className = `absolute top-0 right-0 px-2 py-0.5 rounded-bl-lg text-[10px] font-semibold ${colors.bg} ${colors.text}`;
+    chDiv.className = `absolute top-0 right-0 px-2 py-0.5 rounded-bl-lg text-[10px] font-semibold ${colors.bg} ${textColor}`;
     chDiv.style.filter = 'brightness(0.9)';
     chDiv.textContent = course.ch;
 
@@ -32,7 +45,7 @@ function createCourseCard(course) {
 
     card.append(chDiv, title);
 
-    // Adiciona os event listeners que chamarão funções de outros módulos
+    // Event listeners
     card.addEventListener('mouseenter', () => highlightDependencies(course.id));
     card.addEventListener('mouseleave', clearDependencyHighlights);
     card.addEventListener('focus', () => highlightDependencies(course.id));
@@ -48,6 +61,7 @@ function createCourseCard(course) {
     return card;
 }
 
+
 /**
  * Renderiza toda a grade curricular no DOM.
  */
@@ -60,7 +74,7 @@ export function renderGrid() {
         return acc;
     }, {});
 
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= state.totalPeriods; i++) {
         const periodColumn = document.createElement('div');
         periodColumn.className = 'flex flex-col gap-2 bg-white p-2 rounded-lg shadow-inner';
         

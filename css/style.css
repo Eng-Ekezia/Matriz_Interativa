@@ -78,3 +78,8 @@ body.dark-mode .line-successor-l2 { stroke: #fb923c; }
 body.dark-mode .action-btn.active { background-color: #1e3a8a; color: #93c5fd; }
 /* Classe para esconder as linhas */
 .lines-hidden #svg-overlay { display: none; }
+
+/* Adicionado para diferenciar disciplinas optativas */
+.border-dashed {
+    border-style: dashed;
+}

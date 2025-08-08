@@ -3,7 +3,8 @@
 
 import * as DOM from './dom.js';
 import { state } from './state.js';
-import { AXIS_COLORS } from './config.js';
+import { getTextColorForBackground, getRgbColorFromTailwindClass } from './utils.js';
+//import { AXIS_COLORS } from './config.js';
 
 function createBibliographyList(bibliographyItems) {
     const ol = document.createElement('ol');
@@ -36,11 +37,14 @@ function createRequirementLinks(reqIds) {
         const reqCourse = state.allCoursesData.find(c => c.id === id);
         const button = document.createElement('button');
         button.dataset.id = id;
-        
-        const colors = reqCourse ? AXIS_COLORS[reqCourse.eixo] : null;
-        const bgColor = colors ? colors.bg : 'bg-gray-400';
-        const textColor = colors ? colors.text : 'text-white';
-        
+
+        const colors = reqCourse ? state.axisConfig[reqCourse.eixo] : { bg: 'bg-gray-400' };
+        const bgColor = colors.bg;
+
+        // Lógica inteligente para definir a cor do texto do botão
+        const rgbColor = getRgbColorFromTailwindClass(bgColor);
+        const textColor = getTextColorForBackground(rgbColor);
+
         button.className = `modal-req-link cursor-pointer transition-transform hover:scale-105 text-xs font-medium px-2 py-0.5 rounded ${bgColor} ${textColor}`;
         button.textContent = reqCourse ? reqCourse.nome : id;
 
@@ -105,10 +109,11 @@ function populateCourseModal(courseId) {
     const course = state.allCoursesData.find(c => c.id === courseId);
     if (!course) return;
     const { title, content } = DOM.courseModal;
-    const colors = AXIS_COLORS[course.eixo] || {};
+    //const colors = AXIS_COLORS[course.eixo] || {};
+    const colors = state.axisConfig[course.eixo] || {};
     content.innerHTML = '';
     title.textContent = course.nome;
-    title.className = `text-xl md:text-2xl font-bold ${colors.modalTitleText || 'text-gray-800 dark:text-gray-200'}`;
+    title.className = `text-xl md:text-2xl font-bold help-modal-title`;
     content.append(createModalInfoGrid(course, colors), createModalSection('Ementa', course.ementa), createModalSection('Bibliografia Básica', createBibliographyList(course.bibliografiaBasica)), createModalSection('Bibliografia Complementar', createBibliographyList(course.bibliografiaComplementar)));
 }
 
