@@ -4,12 +4,12 @@ body { font-family: 'Inter', sans-serif; background-color: #f0f4f8; color: #1e29
 .action-btn:hover { transform: scale(1.1); background-color: #cbd5e1; }
 .action-btn:focus-visible { outline: 2px solid #3b82f6; }
 
-/* Animações de "pulse" para destaque visual */
-@keyframes pulse-yellow { 0%, 100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(250, 204, 21, 0); } }
-@keyframes pulse-gray { 0%, 100% { box-shadow: 0 0 0 0 rgba(156, 163, 175, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(156, 163, 175, 0); } }
-@keyframes pulse-fuchsia { 0%, 100% { box-shadow: 0 0 0 0 rgba(232, 121, 249, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(232, 121, 249, 0); } }
-@keyframes pulse-amber { 0%, 100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(251, 191, 36, 0); } }
-@keyframes pulse-orange { 0%, 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); } }
+/* Animações de pulse - ... (sem alterações aqui) ... */
+@keyframes pulse-yellow { 0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(250, 204, 21, 0); } 100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); } }
+@keyframes pulse-gray { 0% { box-shadow: 0 0 0 0 rgba(156, 163, 175, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(156, 163, 175, 0); } 100% { box-shadow: 0 0 0 0 rgba(156, 163, 175, 0); } }
+@keyframes pulse-fuchsia { 0% { box-shadow: 0 0 0 0 rgba(232, 121, 249, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(232, 121, 249, 0); } 100% { box-shadow: 0 0 0 0 rgba(232, 121, 249, 0); } }
+@keyframes pulse-amber { 0% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(251, 191, 36, 0); } 100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); } }
+@keyframes pulse-orange { 0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); } 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); } }
 
 /* Estilos Dark Mode */
 body.dark-mode { background-color: #0d1117; color: #c9d1d9; }
