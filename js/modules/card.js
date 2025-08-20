@@ -33,16 +33,25 @@ function createCourseCard(course) {
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
     card.setAttribute('aria-label', `Disciplina: ${course.nome}. Carga horária: ${course.ch}`);
-    
+
     const chDiv = document.createElement('div');
-    chDiv.className = `absolute top-0 right-0 px-2 py-0.5 rounded-bl-lg text-[10px] font-semibold ${colors.bg} ${textColor}`;
+    // Adicionada a classe 'card-ch-badge' para controle via CSS
+    chDiv.className = `card-ch-badge absolute top-0 right-0 px-2 py-0.5 rounded-bl-lg text-[10px] font-semibold ${colors.bg} ${textColor}`;
     chDiv.style.filter = 'brightness(0.9)';
     chDiv.textContent = course.ch;
 
     const title = document.createElement('h3');
     title.className = 'font-semibold text-xs leading-tight px-1';
-    title.textContent = course.nome;
 
+    const fullNameSpan = document.createElement('span');
+    fullNameSpan.className = 'card-full-name';
+    fullNameSpan.textContent = course.nome;
+
+    const shortNameSpan = document.createElement('span');
+    shortNameSpan.className = 'card-short-name';
+    shortNameSpan.textContent = course.Sigla || course.nome;
+
+    title.append(fullNameSpan, shortNameSpan);
     card.append(chDiv, title);
 
     // Event listeners
@@ -77,10 +86,20 @@ export function renderGrid() {
     for (let i = 1; i <= state.totalPeriods; i++) {
         const periodColumn = document.createElement('div');
         periodColumn.className = 'flex flex-col gap-2 bg-white p-2 rounded-lg shadow-inner';
-        
+
         const periodTitle = document.createElement('h2');
         periodTitle.className = 'text-base font-bold mb-2 text-slate-700 text-center sticky top-0 bg-white py-1 z-10';
-        periodTitle.textContent = `${i}º Período`;
+        
+        // Adiciona spans para o título completo e abreviado do período
+        const fullTitleSpan = document.createElement('span');
+        fullTitleSpan.className = 'period-full-title';
+        fullTitleSpan.textContent = `${i}º Período`;
+
+        const shortTitleSpan = document.createElement('span');
+        shortTitleSpan.className = 'period-short-title';
+        shortTitleSpan.textContent = `${i}P`;
+
+        periodTitle.append(fullTitleSpan, shortTitleSpan);
         periodColumn.appendChild(periodTitle);
 
         if (coursesByPeriod[i]) {

@@ -83,3 +83,52 @@ body.dark-mode .action-btn.active { background-color: #1e3a8a; color: #93c5fd; }
 .border-dashed {
     border-style: dashed;
 }
+
+/* --- ESTILOS PARA RESPONSIVIDADE --- */
+
+/* Por padrão (telas de tablet para baixo) */
+.card-full-name, .period-full-title {
+    display: none;
+}
+.card-short-name, .period-short-title {
+    display: inline;
+}
+.card h3 {
+    padding-top: 8px; /* Ajuste 2: Desloca a sigla para baixo */
+}
+
+/* Em telas de desktop (largas) */
+@media (min-width: 1024px) {
+    .card {
+        align-items: left; /* Alinha o texto à esquerda em telas grandes */
+    }
+    .card-full-name, .period-full-title {
+        display: inline;
+    }
+    .card-short-name, .period-short-title {
+        display: none;
+    }
+    .card h3 {
+        padding-top: 4px; /* Remove o deslocamento em telas grandes */
+    }
+    
+}
+
+/* Em telas de celular (pequenas) */
+@media (max-width: 767px) {
+    .card {
+        min-height: 80px;
+        align-items: center;
+    }
+    .card h3 {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        text-align: center;
+        margin: 0;
+        padding: 0; /* Remove o padding extra na vertical */
+    }
+    /* Ajuste 3: Esconde o badge de CH em telas pequenas */
+    .card-ch-badge {
+        display: none;
+    }
+}
