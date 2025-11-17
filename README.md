@@ -1,10 +1,12 @@
 # Matriz Curricular Interativa
 
-Um visualizador web interativo e dinâmico para matrizes curriculares, desenvolvido em JavaScript puro (Vanilla JS) com HTML5 e Tailwind CSS. O projeto foi inicialmente criado para o curso de Engenharia Civil e de Energia do CEFET-MG, Campus Curvelo.
+Um visualizador web interativo e dinâmico para matrizes curriculares, desenvolvido em JavaScript puro (Vanilla JS) com HTML5 e Tailwind CSS. O projeto foi inicialmente criado para os cursos de Engenharia Civil e de Energia do CEFET-MG, Campus Curvelo.
 
-**[(https://matriz-interativa-engcivil.netlify.app/)]** **[(https://matriz-interativa-engenergia.netlify.app/)]** 
+**Demonstrações:**
+* [Matriz Engenharia Civil](https://matriz-interativa-engcivil.netlify.app/)
+* [Matriz Engenharia de Energia](https://matriz-interativa-engenergia.netlify.app/)
 
- ## 📜 Descrição
+## 📜 Descrição
 
 Este projeto fornece uma interface limpa, responsiva e acessível para que alunos e professores possam explorar a grade curricular de um curso. Ele permite visualizar disciplinas, suas ementas, bibliografias e, o mais importante, suas interdependências (pré-requisitos, co-requisitos e disciplinas futuras que dependem dela).
 
@@ -12,27 +14,27 @@ A aplicação é 100% *client-side* e é totalmente configurada por um único ar
 
 ## ✨ Funcionalidades Principais
 
-  * **Visualização em Grade:** Exibe todas as disciplinas divididas por períodos.
-  * **Destaque de Dependências:** Ao passar o mouse ou focar (via teclado) em uma disciplina, a grade destaca visualmente:
-      * Pré-requisitos
-      * Co-requisitos
-      * Dependências Diretas (Nível 1)
-      * Dependências Indiretas (Nível 2)
-  * **Linhas de Conexão:** Renderiza linhas SVG (curvas de Bézier) em tempo real para conectar visualmente as disciplinas e suas dependências. Esta função pode ser ativada ou desativada.
-  * **Detalhes da Disciplina:** Ao clicar em um card, um modal exibe informações completas, como ementa, carga horária, bibliografia básica e complementar.
-  * **Navegação por Requisitos:** Dentro do modal, os pré-requisitos são clicáveis, permitindo "saltar" para a visualização de outra disciplina.
-  * **Design Responsivo:** Funciona em desktops, tablets e celulares. Em telas pequenas, os cards adotam um layout vertical para melhor legibilidade.
-  * **Temas Claro e Escuro:** Inclui um seletor de tema (Light/Dark Mode) que salva a preferência do usuário no `localStorage`.
-  * **Legenda Dinâmica:** A legenda de eixos (ex: "Matemática", "Estruturas") é gerada automaticamente com base na configuração.
-  * **Acessibilidade:** Interações via teclado são suportadas (`Tab`, `Enter`, `Esc`) e o foco é gerenciado em modais.
+* **Visualização em Grade:** Exibe todas as disciplinas divididas por períodos.
+* **Destaque de Dependências:** Ao passar o mouse ou focar (via teclado) em uma disciplina, a grade destaca visualmente:
+    * Pré-requisitos
+    * Co-requisitos
+    * Dependências Diretas (Nível 1 - disciplinas que a atual libera)
+    * Dependências Indiretas (Nível 2)
+* **Linhas de Conexão:** Renderiza linhas SVG (curvas de Bézier) em tempo real para conectar visualmente as disciplinas e suas dependências. Esta função pode ser ativada ou desativada pelo usuário.
+* **Detalhes da Disciplina:** Ao clicar em um card, um modal exibe informações completas, como ementa, carga horária, bibliografia básica e complementar.
+* **Navegação por Requisitos:** Dentro do modal, os pré-requisitos são clicáveis, permitindo "saltar" para a visualização de outra disciplina sem fechar a navegação.
+* **Design Responsivo:** Funciona em desktops, tablets e celulares. Em telas pequenas, os cards adotam um layout vertical otimizado para leitura.
+* **Temas Claro e Escuro:** Inclui um seletor de tema (Light/Dark Mode) que salva a preferência do usuário no `localStorage`.
+* **Legenda Dinâmica:** A legenda de eixos (ex: "Matemática", "Estruturas") é gerada automaticamente com base na configuração do arquivo de dados.
+* **Acessibilidade:** Interações via teclado são suportadas (`Tab`, `Enter`, `Esc`) e o foco é gerenciado corretamente dentro dos modais.
 
-## 🚀 Arquitetura e Detalhes Técnicos
+## 📐 Arquitetura e Detalhes Técnicos
 
-A aplicação é construída com **JavaScript moderno (ESM)**, sem a necessidade de *frameworks* ou *build steps*. A estrutura modular separa claramente as responsabilidades.
+A aplicação é construída com **JavaScript moderno (ESM - ECMAScript Modules)**, sem a necessidade de *frameworks* complexos ou *build steps*. A estrutura modular separa claramente as responsabilidades do código.
 
-### Estrutura dos Arquivos
+### Estrutura de Pastas
 
-```
+```text
 /
 ├── Matriz_atualizada_completa.json  # O CORAÇÃO DO PROJETO: Todos os dados do curso
 ├── index.html                       # Estrutura principal da página
@@ -48,52 +50,168 @@ A aplicação é construída com **JavaScript moderno (ESM)**, sem a necessidade
         ├── events.js                # Gerenciador de todos os eventos de interação
         ├── modal.js                 # Lógica de abertura e população dos modais
         ├── lines.js                 # Lógica de desenho das linhas de conexão (SVG)
+        ├── config.js                # Constantes de configuração (ex: classes de destaque)
         └── utils.js                 # Funções utilitárias (cálculo de contraste, etc.)
+````
+
+### Diagrama de Classes (Estrutura de Módulos)
+
+O diagrama abaixo ilustra como os módulos JavaScript interagem entre si. Como o projeto utiliza Módulos ES6 e não classes tradicionais, cada bloco representa um módulo e suas funções exportadas.
+
+```mermaid
+classDiagram
+    class App {
+        -DATA_FILE_PATH : string
+        +main()
+        +initApp(curriculumData)
+        +buildSuccessorMap()
+    }
+
+    class State {
+        +allCoursesData : Array
+        +successorMap : Map
+        +linesVisible : Boolean
+        +totalPeriods : Number
+        +axisConfig : Object
+        +lastFocusedElement : HTMLElement
+    }
+
+    class DOM {
+        +body : HTMLElement
+        +grid : HTMLElement
+        +svgOverlay : HTMLElement
+        +courseModal : Object
+        +helpModal : Object
+        +buttons : Object
+        +themeIcons : Object
+        +linkIcons : Object
+    }
+
+    class Config {
+        +HIGHLIGHT_CLASSES : Array
+    }
+
+    class Utils {
+        -colorCache : Map
+        +getTextColorForBackground(rgbString)
+        +getRgbColorFromTailwindClass(bgClass)
+    }
+
+    class UI {
+        +renderHeader(courseInfo)
+        +renderAxisLegend(axisConfig)
+    }
+
+    class Card {
+        -colorCache : Map
+        +createCourseCard(course) HTMLElement
+        +renderGrid()
+    }
+
+    class Modal {
+        +openModal(modalId, courseId)
+        +closeModal(modalId)
+        +populateCourseModal(courseId)
+        +populateHelpModal()
+    }
+
+    class Lines {
+        +drawConnectionLines(sourceCard, targetCards, lineClass, direction)
+    }
+
+    class Events {
+        +initializeEventListeners()
+        +highlightDependencies(courseId)
+        +clearDependencyHighlights()
+    }
+
+    %% Relacionamentos
+    App ..> State : inicializa
+    App ..> Card : chama
+    App ..> Events : chama
+    App ..> UI : chama
+
+    Card ..> DOM : usa
+    Card ..> State : lê
+    Card ..> Modal : aciona
+    Card ..> Events : vincula
+    Card ..> Utils : usa
+
+    Events ..> State : lê/altera
+    Events ..> Lines : usa
+    Events ..> Config : lê
+    Events ..> Modal : controla
 ```
 
-### Principais Destaques Técnicos
+### Descrição dos Módulos
 
-1.  **Fonte de Dados Única (`.json`)**
-    Toda a aplicação é alimentada pelo arquivo `Matriz_atualizada_completa.json`. Ele define não apenas as disciplinas (`courses`), mas também as informações do curso (`courseInfo`), o número de períodos (`totalPeriods`) e, crucialmente, as cores de cada eixo (`axisConfig`). Isso significa que para adaptar o projeto para outro curso, **nenhuma linha de código JavaScript precisa ser alterada.**
+  * **`app.js` (Controlador Principal):** Ponto de entrada da aplicação. Responsável por fazer o *fetch* do arquivo JSON, processar os dados iniciais (como criar o mapa de sucessores para a lógica inversa de pré-requisitos) e orquestrar a inicialização dos outros módulos.
+  * **`state.js` (Gerenciador de Estado):** Objeto global simples que armazena o estado da aplicação em tempo de execução, como a lista completa de cursos, o mapa de dependências e a configuração de visibilidade das linhas.
+  * **`dom.js` (Cache do DOM):** Centraliza todas as referências aos elementos HTML (botões, modais, grid). Isso evita buscas repetitivas no documento (`document.getElementById`) e melhora a performance.
+  * **`card.js` (Renderização):** Responsável por criar os elementos visuais (cards) de cada disciplina e renderizar a grade curricular completa na tela, aplicando as cores corretas baseadas nos eixos.
+  * **`events.js` (Interação):** Gerencia todos os eventos do usuário, como cliques, *hover* (passar o mouse), alternância de tema e lógica de destaque de dependências.
+  * **`lines.js` (Visualização Gráfica):** Módulo especializado em desenhar as linhas curvas (SVG Bézier) que conectam as disciplinas quando o modo de visualização de conexões está ativo.
+  * **`modal.js` (Interface Detalhada):** Gerencia a abertura, fechamento e preenchimento dinâmico de conteúdo dos modais (janelas sobrepostas) que mostram os detalhes da disciplina ou a ajuda.
+  * **`utils.js` (Utilitários):** Funções auxiliares puras, principalmente para cálculo de cores e contraste para acessibilidade (decide se o texto deve ser branco ou preto dependendo da cor de fundo do card).
+  * **`config.js` (Configuração):** Centraliza constantes e classes CSS utilizadas para destaque e estilização dinâmica.
 
-2.  **Mapeamento de Sucessores**
-    Para permitir o destaque de dependências futuras (o que uma disciplina "libera"), o `app.js` constrói um `successorMap` (`Map`) durante a inicialização. Ele inverte a lógica dos pré-requisitos, criando um mapa onde cada ID de disciplina tem uma lista de disciplinas que dependem dela.
+### Fluxo de Inicialização de Dados
 
-3.  **Contraste de Cor Automático**
-    A função `getTextColorForBackground` em `utils.js` garante a acessibilidade. Ela calcula a luminosidade da cor de fundo de um card (definida no JSON) e decide dinamicamente se o texto deve ser claro (`text-white`) ou escuro (`text-slate-800`), garantindo sempre a melhor legibilidade.
+```mermaid
+sequenceDiagram
+    participant Browser
+    participant App
+    participant Server as JSON File
+    participant State
+    participant Card
+    participant UI
 
-4.  **Desenho de Linhas SVG Dinâmico**
-    Quando as linhas estão ativadas, `lines.js` usa `getBoundingClientRect()` para obter as coordenadas exatas dos cards de origem e destino e desenha uma **curva de Bézier** SVG (`<path d="M... C...">`) entre eles. Isso cria uma conexão visual fluida que se adapta ao layout.
-
-5.  **Responsividade com `style.css`**
-    O CSS utiliza uma abordagem *mobile-first*. Em telas pequenas (`@media (max-width: 767px)`), os cards se tornam mais altos e usam `writing-mode: vertical-rl` para exibir o texto da sigla verticalmente, otimizando o espaço. Em telas de desktop, os nomes completos das disciplinas são exibidos.
+    Browser->>App: Carrega Página (DOMContentLoaded)
+    App->>Server: fetch('Matriz_atualizada_completa.json')
+    Server-->>App: Retorna Dados JSON
+    
+    App->>State: initApp(dados) -> Armazena cursos e configs
+    App->>App: buildSuccessorMap() -> Processa dependências
+    
+    App->>UI: renderHeader() -> Preenche Título/Instituição
+    App->>UI: renderAxisLegend() -> Cria Legenda
+    
+    App->>Card: renderGrid()
+    loop Para cada Período
+        Card->>Card: createCourseCard()
+        Card->>State: Consulta Cores/Dados
+        Card-->>Browser: Adiciona Card ao DOM
+    end
+    
+    App->>Browser: Aplicação Pronta (Aguarda Eventos)
+```
 
 ## 🔧 Como Usar ou Adaptar para Outro Curso
 
 Adaptar este projeto para um novo currículo é simples:
 
 1.  **Clone o repositório.**
-2.  **Edite `Matriz_atualizada_completa.json`:**
-      * **`courseInfo`**: Altere `title`, `name` e `institution`.
-      * **`totalPeriods`**: Defina o número de períodos/semestres do seu curso.
-      * **`courses`**: Substitua o array com as disciplinas do seu curso. O formato de cada objeto de disciplina é crucial:
+2.  **Edite o arquivo `Matriz_atualizada_completa.json`:**
+      * **`courseInfo`**: Altere o título, nome do curso e instituição.
+      * **`totalPeriods`**: Defina o número de períodos/semestres.
+      * **`courses`**: Substitua o array com as disciplinas do seu curso. O formato crucial é:
         ```json
         {
-          "id": "CODIGO_UNICO_DA_DISCIPLINA",
-          "nome": "Nome Completo da Disciplina",
-          "ch": "Carga Horária (ex: 60h)",
-          "periodo": 1, // Número do período
-          "eixo": "NomeDoEixo", // Deve corresponder a uma chave em 'axisConfig'
-          "prerequisitos": ["ID_DISCIPLINA_1", "ID_DISCIPLINA_2"],
+          "id": "CODIGO_UNICO",
+          "nome": "Nome Completo",
+          "ch": "60h",
+          "periodo": 1,
+          "eixo": "NomeDoEixo",
+          "prerequisitos": ["CODIGO_REQ_1", "CODIGO_REQ_2"],
           "corequisitos": [],
-          "ementa": "Texto da ementa...",
-          "bibliografiaBasica": ["Livro 1", "Livro 2"],
+          "ementa": "Texto...",
+          "bibliografiaBasica": ["Livro 1"],
           "bibliografiaComplementar": [],
-          "Sigla": "SIGLA", // Usado em telas menores
-          "tipo": "Optativa" // Opcional. Use "Optativa" para borda tracejada
+          "Sigla": "SIGLA", 
+          "tipo": "Optativa" // Use "Optativa" para borda tracejada
         }
         ```
-      * **`axisConfig`**: Defina os "eixos" (categorias) do seu curso e as classes de cor do Tailwind CSS para cada um.
+      * **`axisConfig`**: Defina os eixos e cores (classes Tailwind):
         ```json
         "axisConfig": {
           "NomeDoEixo": {
@@ -101,24 +219,14 @@ Adaptar este projeto para um novo currículo é simples:
             "text": "text-blue-800",
             "border": "border-blue-700",
             "lightBg": "bg-blue-100"
-          },
-          "OutroEixo": {
-            "bg": "bg-green-500",
-            "text": "text-green-800",
-            "border": "border-green-700",
-            "lightBg": "bg-green-100"
           }
         }
         ```
 3.  **Execute Localmente:**
-    Como o projeto usa Módulos ES (`import`/`export`), ele precisa ser servido por um servidor web (não funciona abrindo o `index.html` diretamente do arquivo).
-      * Se você usa **VS Code**, instale a extensão `Live Server` e clique em "Go Live".
-      * Se você tem **Python 3**, navegue até a pasta e execute:
-        ```bash
-        python -m http.server
-        ```
-      * Acesse `http://localhost:8000`.
+    Como o projeto usa Módulos ES, ele precisa de um servidor web local (não funciona abrindo o `index.html` direto do arquivo).
+      * **VS Code:** Instale a extensão "Live Server" e clique em "Go Live".
+      * **Python 3:** Execute `python -m http.server` e acesse `http://localhost:8000`.
 
 ## 🧑‍💻 Créditos
 
-Criado pela **Prof.ª Carolina Vieira** e **Prof. Ezequiel Lima** ezequiel@cefetmg.br (CEFET-MG, Campus Curvelo), com o auxílio da IA Gemini do Google.
+Criado pela **Prof.ª Carolina Vieira** e **Prof. Ezequiel Lima** (ezequiel@cefetmg.br) - CEFET-MG, Campus Curvelo, com o auxílio da IA Gemini do Google.
