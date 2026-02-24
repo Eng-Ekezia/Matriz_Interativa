@@ -217,11 +217,11 @@ function handleAxisFilter(e) {
 
     if (currentAxisFilter === axis) {
         currentAxisFilter = null;
-        filterBtn.classList.remove('ring-2', 'ring-blue-500', 'ring-offset-1', 'dark:ring-blue-400', 'dark:ring-offset-[#161b22]');
+        filterBtn.classList.remove('active-filter-pulse');
     } else {
-        document.querySelectorAll('.axis-filter-btn').forEach(btn => btn.classList.remove('ring-2', 'ring-blue-500', 'ring-offset-1', 'dark:ring-blue-400', 'dark:ring-offset-[#161b22]'));
+        document.querySelectorAll('.axis-filter-btn').forEach(btn => btn.classList.remove('active-filter-pulse'));
         currentAxisFilter = axis;
-        filterBtn.classList.add('ring-2', 'ring-blue-500', 'ring-offset-1', 'dark:ring-blue-400', 'dark:ring-offset-[#161b22]');
+        filterBtn.classList.add('active-filter-pulse');
     }
 
     applyFilters();
