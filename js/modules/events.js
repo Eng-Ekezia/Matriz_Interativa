@@ -9,14 +9,26 @@ import { drawConnectionLines } from './lines.js';
 
 function applyTheme(isDark) {
     DOM.body.classList.toggle('dark-mode', isDark);
+    document.documentElement.classList.toggle('dark', isDark); // Suporte ao Tailwind
+
+    // Força classes dark do tailwind no input de busca para evitar override do estilo raiz
+    if (DOM.inputs && DOM.inputs.search) {
+        DOM.inputs.search.classList.toggle('bg-[#21262d]', isDark);
+        DOM.inputs.search.classList.toggle('border-[#30363d]', isDark);
+        DOM.inputs.search.classList.toggle('text-gray-200', isDark);
+        DOM.inputs.search.classList.toggle('bg-white', !isDark);
+    }
+
     DOM.themeIcons.sun.classList.toggle('hidden', !isDark);
     DOM.themeIcons.moon.classList.toggle('hidden', isDark);
 }
 
 function toggleTheme() {
-    const isDark = DOM.body.classList.toggle('dark-mode');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    applyTheme(isDark);
+    const isDark = DOM.body.classList.contains('dark-mode');
+    const toggleTo = !isDark;
+
+    applyTheme(toggleTo);
+    localStorage.setItem('theme', toggleTo ? 'dark' : 'light');
 }
 
 function toggleLines() {
