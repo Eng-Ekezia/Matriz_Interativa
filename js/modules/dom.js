@@ -16,10 +16,15 @@ export const helpModal = {
     content: document.getElementById('help-modal-content')
 };
 
+export const inputs = {
+    search: document.getElementById('search-input'),
+};
+
 export const buttons = {
     help: document.getElementById('help-btn'),
     themeToggle: document.getElementById('theme-toggle-btn'),
-    toggleLines: document.getElementById('toggle-lines-btn')
+    toggleLines: document.getElementById('toggle-lines-btn'),
+    clearSearch: document.getElementById('clear-search-btn'),
 };
 
 export const themeIcons = {

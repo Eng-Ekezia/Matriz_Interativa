@@ -9,7 +9,7 @@ import * as DOM from './dom.js';
  */
 export function renderHeader(courseInfo) {
     if (!courseInfo) return;
-    
+
     // Usa '??' para fornecer um valor padrão caso a propriedade não exista no JSON
     DOM.body.querySelector('#course-title').textContent = courseInfo.title ?? 'Matriz Curricular Interativa';
     DOM.body.querySelector('#course-institution').textContent = `${courseInfo.name ?? ''} - ${courseInfo.institution ?? ''}`;
@@ -30,7 +30,9 @@ export function renderAxisLegend(axisConfig) {
         const colorClass = axisData.bg;
 
         const legendItem = document.createElement('div');
-        legendItem.className = 'flex items-center gap-1.5';
+        legendItem.className = 'flex items-center gap-1.5 cursor-pointer hover:opacity-75 transition-opacity axis-filter-btn';
+        legendItem.dataset.axis = axisName;
+        legendItem.title = `Filtrar por ${axisName}`;
         // Usa diretamente a chave 'axisName' para o texto
         legendItem.innerHTML = `<div class="w-3 h-3 rounded-full ${colorClass}"></div><span>${axisName}</span>`;
 
