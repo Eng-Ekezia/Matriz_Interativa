@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "courseInfo": {
     "title": "Matriz Curricular Interativa",
     "name": "Engenharia Civil",
@@ -1414,7 +1414,8 @@
       "eixo": "Construção Civil e materiais",
       "prerequisitos": [
         "G10QUIM0.01",
-        "G10LQUI0.01"
+        "G10LQUI0.01",
+        "G10FMEC0.01"
       ],
       "corequisitos": [],
       "ementa": "Materiais de engenharia; estruturas e propriedades físicas, químicas e mecânicas dos materiais sólidos, tais como metais, cerâmicas, polímeros e compósitos; força e energia de ligação; imperfeições em sólidos; falhas dos materiais; alterações microestruturais; noções de materiais compósitos; impactos ambientais, sociais e econômicos dos materiais de engenharia na sociedade; reciclagem e reutilização de resíduos de construção e demolição na construção civil.",
@@ -1452,7 +1453,9 @@
       "ch": "60h",
       "periodo": 5,
       "eixo": "Construção Civil e materiais",
-      "prerequisitos": [],
+      "prerequisitos": [
+        "G10EAEN0.01"
+      ],
       "corequisitos": [
         "G10RMAT1.01"
       ],
@@ -1959,10 +1962,11 @@
       "periodo": 6,
       "eixo": "Estruturas e geotecnia",
       "prerequisitos": [
-        "G10GAEN0.01",
+        "G10GAEN0.01"
+      ],
+      "corequisitos": [
         "G10RMAT1.01"
       ],
-      "corequisitos": [],
       "ementa": "Histórico e evolução da engenharia geotécnica; solos sob o ponto de vista da engenharia; físicas dos solos; classificação dos solos; compactação; tensões e deformações nos solos; hidráulica dos solos; compressibilidade e adensamento dos solos; drenagem e filtros; amostragem de solos; ensaios de laboratório.",
       "bibliografiaBasica": [
         "CAPUTO, H. P. Mecânica dos solos e suas aplicações: exercícios e problemas resolvidos. 7. ed. Rio de Janeiro: LTC, 2015. v. 3.",
@@ -2234,10 +2238,10 @@
       "ch": "60h",
       "periodo": 7,
       "eixo": "Construção Civil e materiais",
-      "prerequisitos": [
+      "prerequisitos": [],
+      "corequisitos": [
         "G10TOPO2.01"
       ],
-      "corequisitos": [],
       "ementa": "Os modos de transporte, características institucionais e econômicas dos serviços de transporte público e acessibilidade; critérios de Conforto, segurança, problemas ambientais; o uso do espaço de circulação, análise das condições atuais; desenvolvimento urbano e as políticas de transporte; pesquisa sobre a demanda de viagens (O/D) pesquisa sobre o sistema viário e a oferta de transporte coletivo; modelo de geração de viagens; modelo de alocação de rotas; crítica ao uso das técnicas tradicionais de planejamento; crítica ao planejamento de transporte em países em desenvolvimento.",
       "bibliografiaBasica": [
         "LESTER, A. Hoel. Engenharia de Infraestrutura de Transportes: uma integração multimodal. São Paulo: Cengage Learning, 2011.",
@@ -2275,7 +2279,7 @@
       "eixo": "Construção Civil e materiais",
       "prerequisitos": [
         "G10MSOL1.01",
-        "G10MCON2.01"
+        "G10MCON1.01"
       ],
       "corequisitos": [],
       "ementa": "Legislação e implantação de obra; canteiro de Obra; locação de obras; execução de Fundações (obras de pequeno e grande porte); execução de estruturas (sistemas estruturais, sistemas de formas e dimensionamento e detalhamento de formas, produção de armaduras, sequência de produção e etapas de controle, incluindo a produção, lançamento, adensamento, cura e durabilidade dos concretos).",
@@ -2394,7 +2398,8 @@
       "periodo": 7,
       "eixo": "Estruturas e geotecnia",
       "prerequisitos": [
-        "G10MSOL1.01"
+        "G10MSOL1.01",
+        "G10RMAT1.01"
       ],
       "corequisitos": [],
       "ementa": "Resistência ao cisalhamento dos solos; ensaios de campo e de laboratório para estudo de comportamento tensão-deformação-resistência dos solos; métodos de equilíbrio limite; estabilidade de taludes e encostas; empuxos de terra; uso de geossintéticos em geotecnia; rebaixamento do lençol freático.",
@@ -2663,10 +2668,11 @@
       "eixo": "Construção Civil e materiais",
       "prerequisitos": [
         "G10TOPO2.01",
-        "G10EPTR0.01",
         "G10DCOM0.01"
       ],
-      "corequisitos": [],
+      "corequisitos": [
+        "G10EPTR0.01"
+      ],
       "ementa": "Escolha do traçado de rodovias e ferrovias. Representação gráfica do projeto. Curvas horizontais. Superlargura. Curvas circulares com transição. Perfil longitudinal: rampas e curvas. Seções transversais: elementos, dimensões, distribuição de superelevação. Interseções. Terraplenagem: movimentos de terra e equipamentos. Noções de sinalização e drenagem de rodovias.",
       "bibliografiaBasica": [
         "ANTAS, P. M.; VIEIRA, A.; GONÇALO, E. A.; LOPES, L. A. S. Estradas: projeto geométrico e de terraplenagem. Rio de Janeiro: Interciência. 2010.",
@@ -3169,9 +3175,11 @@
       "periodo": 9,
       "eixo": "Construção Civil e materiais",
       "prerequisitos": [
+        "G10MSOL2.01"
+      ],
+      "corequisitos": [
         "G10ESTR1.01"
       ],
-      "corequisitos": [],
       "ementa": "Introdução e conceituação de pavimentos flexíveis e rígidos; conceitos básicos de mecânica dos solos aplicados à geotecnia de estradas; construção de aterros rodoviários e controle de compactação; ruína estrutural: deformações permanentes e fadiga; ruína funcional: conforto e segurança de rolamento, e conceitos de serventia e irregularidade; ensaios para a determinação do comportamento dos materiais; ensaios de compressão simples e diametral, índice de suporte Califórnia (CBR), triaxial convencional e triaxial cíclico e compressão diametral cíclica; módulo de resiliência; classificações de solos; revestimentos asfálticos; materiais pétreos e ligantes, tratamentos superficiais e concretos asfálticos; método de dosagem de Marshall; estudo do carregamento veicular; tipos de veículos, tráfego, equivalência de cargas e definição do número de solicitações equivalentes; concepção e dimensionamento de pavimentos; método do DNER e Método da AASHTO; análise mecanística de pavimentos; avaliação funcional e estrutural de pavimentos em uso; principais defeitos nos pavimentos flexíveis; medidas de deflexões, Viga Benkelman, cálculo de reforço.",
       "bibliografiaBasica": [
         "BERNUCCI, L. B. et al. Pavimentação asfáltica: formação básica para engenheiros. Rio de Janeiro: PETROBRAS: ABEDA, 2006.",
@@ -3711,9 +3719,11 @@
       "eixo": "Construção Civil e materiais",
       "prerequisitos": [
         "G10MSOL2.01",
+        "G10ESTR1.01"
+      ],
+      "corequisitos": [
         "G10ESTR2.01"
       ],
-      "corequisitos": [],
       "ementa": "Generalidades; transporte ferroviário; infraestrutura ferroviária e superestrutura ferroviária; material rodante; material de tração; movimento e resistência dos trens; operação ferroviária; segurança ferroviária e tráfego ferroviário; conservação ferroviária.",
       "bibliografiaBasica": [
         "NABAIS, Rui José da Silva (org.). Manual básico de engenharia ferroviária. São Paulo, SP: Oficina de Textos, c2014.",
@@ -3917,7 +3927,9 @@
       "prerequisitos": [
         "G10FELE0.01"
       ],
-      "corequisitos": [],
+      "corequisitos": [
+        "G10IEPR0.01"
+      ],
       "ementa": "Matriz Energética Brasileira e Perspectivas de geração da energia fotovoltaica; Geometria Solar; Carta solar; Princípios básicos da conversão de radiação em eletricidade; Efeito fotovoltaico; Princípio de funcionamento da célula solar; Tipos de células solares; O gerador fotovoltaico (on-grid, off-grid e híbrido); Noções de tarifação e créditos de energia; Tecnologias associadas à geração fotovoltaica; Principais componentes de um sistema de geração fotovoltaica; Sistemas de instalação (BAPV, BIPV, solo e carports); Noções básicas de projeto de sistemas de geração fotovoltaica; Manutenção, comissionamento e operação de um sistema fotovoltaico.",
       "bibliografiaBasica": [
         "BALFOUR, John; SHAW, Michael; NASH, Nicole Bremer. Introdução ao projeto de sistemas fotovoltaicos. Rio de Janeiro: LTC, 2016",
@@ -4131,10 +4143,10 @@
       "lightBg": "bg-yellow-100"
     },
     "Construção Civil e materiais": {
-      "bg": "bg-purple-500",
-      "text": "text-purple-800",
-      "border": "border-purple-700",
-      "lightBg": "bg-purple-100"
+      "bg": "bg-violet-500",
+      "text": "text-violet-800",
+      "border": "border-violet-700",
+      "lightBg": "bg-violet-100"
     },
     "Estruturas e geotecnia": {
       "bg": "bg-orange-500",
@@ -4143,10 +4155,10 @@
       "lightBg": "bg-orange-100"
     },
     "Expressão Gráfica": {
-      "bg": "bg-lime-500",
-      "text": "text-lime-800",
-      "border": "border-lime-700",
-      "lightBg": "bg-lime-100"
+      "bg": "bg-fuchsia-500",
+      "text": "text-fuchsia-800",
+      "border": "border-fuchsia-700",
+      "lightBg": "bg-fuchsia-100"
     },
     "Hidrotecnia e Recursos Ambientais": {
       "bg": "bg-sky-500",
