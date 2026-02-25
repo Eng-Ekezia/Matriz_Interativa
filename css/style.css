@@ -277,9 +277,9 @@ body.dark-mode .help-modal-legend-bg {
 }
 
 .highlight-prereq {
-    background-color: #d1d5db !important;
-    border-color: #9ca3af !important;
-    color: #1f2937 !important;
+    background-color: var(--cool-light-blue) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    color: white !important;
     animation: pulse-gray 2s infinite;
 }
 
@@ -291,16 +291,16 @@ body.dark-mode .help-modal-legend-bg {
 }
 
 .highlight-successor-l1 {
-    background-color: #fcd34d !important;
-    border-color: #fbbf24 !important;
-    color: #78350f !important;
+    background-color: var(--warm-orange) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    color: white !important;
     animation: pulse-amber 2s infinite;
 }
 
 .highlight-successor-l2 {
-    background-color: #fb923c !important;
-    border-color: #f97316 !important;
-    color: #431407 !important;
+    background-color: var(--warm-deep-orange) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    color: white !important;
     animation: pulse-orange 2s infinite;
 }
 
@@ -497,28 +497,10 @@ body.dark-mode .highlight-hover {
     color: #fef08a !important;
 }
 
-body.dark-mode .highlight-prereq {
-    background-color: #4b5563 !important;
-    border-color: #6b7280 !important;
-    color: #e5e7eb !important;
-}
-
 body.dark-mode .highlight-coreq {
     background-color: rgba(232, 121, 249, 0.25) !important;
     border-color: #e879f9 !important;
     color: #f0abfc !important;
-}
-
-body.dark-mode .highlight-successor-l1 {
-    background-color: rgba(251, 191, 36, 0.25) !important;
-    border-color: #fcd34d !important;
-    color: #fde68a !important;
-}
-
-body.dark-mode .highlight-successor-l2 {
-    background-color: rgba(249, 115, 22, 0.25) !important;
-    border-color: #fb923c !important;
-    color: #fed7aa !important;
 }
 
 /* Dark mode for coreq critical highlights */
@@ -584,8 +566,8 @@ body.dark-mode .highlight-critical-coreq-l10 {
 
 /* Cores da Legenda de Dependências (Modo Claro) */
 .legend-prereq {
-    background-color: #d1d5db;
-    border-color: #9ca3af;
+    background-color: var(--cool-light-blue);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .legend-coreq {
@@ -594,34 +576,19 @@ body.dark-mode .highlight-critical-coreq-l10 {
 }
 
 .legend-successor-l1 {
-    background-color: #fcd34d;
-    border-color: #fbbf24;
+    background-color: var(--warm-orange);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .legend-successor-l2 {
-    background-color: #fb923c;
-    border-color: #f97316;
+    background-color: var(--warm-deep-orange);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Cores da Legenda de Dependências (Modo Escuro) */
-body.dark-mode .legend-prereq {
-    background-color: #4b5563;
-    border-color: #6b7280;
-}
-
 body.dark-mode .legend-coreq {
     background-color: #a21caf;
     border-color: #e879f9;
-}
-
-body.dark-mode .legend-successor-l1 {
-    background-color: #b45309;
-    border-color: #fcd34d;
-}
-
-body.dark-mode .legend-successor-l2 {
-    background-color: #9a3412;
-    border-color: #fb923c;
 }
 
 
@@ -651,7 +618,7 @@ body.dark-mode .legend-successor-l2 {
 
 /* Prerequisitos têm a animação no sentido oposto para indicar fluxo "para" o hover */
 .line-prereq {
-    stroke: #6b7280;
+    stroke: var(--cool-light-blue);
     animation: dash-backward 30s linear infinite;
     opacity: 1;
     /* Pré-requisitos mais sólidos */
@@ -665,13 +632,13 @@ body.dark-mode .legend-successor-l2 {
 }
 
 .line-successor-l1 {
-    stroke: #d97706;
+    stroke: var(--warm-orange);
     opacity: 1;
     /* Sucessos L1 fortes */
 }
 
 .line-successor-l2 {
-    stroke: #ea580c;
+    stroke: var(--warm-deep-orange);
     stroke-dasharray: 4 4;
     /* L2 tracejado distante */
     animation: dash-forward 40s linear infinite;
