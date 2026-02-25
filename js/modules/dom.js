@@ -24,6 +24,7 @@ export const buttons = {
     help: document.getElementById('help-btn'),
     themeToggle: document.getElementById('theme-toggle-btn'),
     toggleLines: document.getElementById('toggle-lines-btn'),
+    toggleCriticalPath: document.getElementById('toggle-critical-path-btn'),
     clearSearch: document.getElementById('clear-search-btn'),
 };
 

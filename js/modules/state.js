@@ -5,5 +5,6 @@ export const state = {
     allCoursesData: [],
     successorMap: new Map(),
     linesVisible: false,
+    criticalPathActive: false,
     lastFocusedElement: null
 };

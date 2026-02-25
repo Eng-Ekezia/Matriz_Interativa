@@ -1,4 +1,31 @@
 /* Estilos Base */
+:root {
+    --warm-orange: #ff8000;
+    --warm-deep-orange: #ff4f00;
+    --warm-red: #db0043;
+    --warm-magenta: #8f0046;
+    --warm-dark-purple: #510048;
+
+    --cool-light-blue: #0080ff;
+    --cool-strong-blue: #004fff;
+    --cool-indigo: #003bdb;
+    --cool-violet: #46008f;
+    --cool-dark-purple: #480051;
+
+    /* Depths 6 to 10 */
+    --warm-depth-6: #400038;
+    --warm-depth-7: #300028;
+    --warm-depth-8: #200018;
+    --warm-depth-9: #100008;
+    --warm-depth-10: #050005;
+
+    --cool-depth-6: #380040;
+    --cool-depth-7: #280030;
+    --cool-depth-8: #180020;
+    --cool-depth-9: #080010;
+    --cool-depth-10: #050005;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: #f0f4f8;
@@ -104,6 +131,32 @@ body {
 body.dark-mode {
     background-color: #0d1117;
     color: #c9d1d9;
+
+    /* Critical Path Dark Mode Overrides */
+    --warm-orange: #cc6600;
+    --warm-deep-orange: #cc3f00;
+    --warm-red: #b30036;
+    --warm-magenta: #730038;
+    --warm-dark-purple: #42003a;
+
+    --cool-light-blue: #0066cc;
+    --cool-strong-blue: #003fcc;
+    --cool-indigo: #002fb3;
+    --cool-violet: #380073;
+    --cool-dark-purple: #3a0042;
+
+    /* Depths 6-10 */
+    --warm-depth-6: #33002d;
+    --warm-depth-7: #260020;
+    --warm-depth-8: #1a0013;
+    --warm-depth-9: #0d0006;
+    --warm-depth-10: #000000;
+
+    --cool-depth-6: #2d0033;
+    --cool-depth-7: #200026;
+    --cool-depth-8: #13001a;
+    --cool-depth-9: #06000d;
+    --cool-depth-10: #000000;
 }
 
 body.dark-mode .bg-white {
@@ -206,7 +259,10 @@ body.dark-mode .help-modal-legend-bg {
 /* Classes de Destaque para Interação */
 .highlight-base {
     transform: scale(1.05);
-    z-index: 10;
+    /* Escala ao ativar */
+    z-index: 20;
+    /* Traz pra frente */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .highlight-hover {
@@ -214,6 +270,10 @@ body.dark-mode .help-modal-legend-bg {
     border-color: #facc15 !important;
     color: #713f12 !important;
     animation: pulse-yellow 2s infinite;
+    transform: scale(1.08);
+    /* Foco principal um pouco maior */
+    z-index: 30;
+    /* Foco acima de tudo */
 }
 
 .highlight-prereq {
@@ -244,7 +304,193 @@ body.dark-mode .help-modal-legend-bg {
     animation: pulse-orange 2s infinite;
 }
 
+/* Critical Path Depth Classes */
+.highlight-critical-ancestor-l1 {
+    background-color: var(--cool-light-blue) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.highlight-critical-ancestor-l2 {
+    background-color: var(--cool-strong-blue) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.highlight-critical-ancestor-l3 {
+    background-color: var(--cool-indigo) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.highlight-critical-ancestor-l4 {
+    background-color: var(--cool-violet) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.highlight-critical-ancestor-l5 {
+    background-color: var(--cool-dark-purple) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.highlight-critical-ancestor-l6 {
+    background-color: var(--cool-depth-6) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.highlight-critical-ancestor-l7 {
+    background-color: var(--cool-depth-7) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.highlight-critical-ancestor-l8 {
+    background-color: var(--cool-depth-8) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.highlight-critical-ancestor-l9 {
+    background-color: var(--cool-depth-9) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.highlight-critical-ancestor-l10 {
+    background-color: var(--cool-depth-10) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Corequisites in Critical Path (currently supporting mapping up to L10 for future proofing) */
+.highlight-critical-coreq-l1 {
+    background-color: #f0abfc !important;
+    border-color: #e879f9 !important;
+    color: #581c87 !important;
+}
+
+.highlight-critical-coreq-l2 {
+    background-color: #e879f9 !important;
+    border-color: #d946ef !important;
+    color: #4a044e !important;
+}
+
+.highlight-critical-coreq-l3 {
+    background-color: #d946ef !important;
+    border-color: #c026d3 !important;
+    color: #4a044e !important;
+}
+
+.highlight-critical-coreq-l4 {
+    background-color: #c026d3 !important;
+    border-color: #a21caf !important;
+    color: white !important;
+}
+
+.highlight-critical-coreq-l5 {
+    background-color: #a21caf !important;
+    border-color: #86198f !important;
+    color: white !important;
+}
+
+.highlight-critical-coreq-l6 {
+    background-color: #86198f !important;
+    border-color: #701a75 !important;
+    color: white !important;
+}
+
+.highlight-critical-coreq-l7 {
+    background-color: #701a75 !important;
+    border-color: #4a044e !important;
+    color: white !important;
+}
+
+.highlight-critical-coreq-l8 {
+    background-color: #4a044e !important;
+    border-color: #3b0764 !important;
+    color: white !important;
+}
+
+.highlight-critical-coreq-l9 {
+    background-color: #3b0764 !important;
+    border-color: #2e1065 !important;
+    color: white !important;
+}
+
+.highlight-critical-coreq-l10 {
+    background-color: #2e1065 !important;
+    border-color: #1a0b2e !important;
+    color: white !important;
+}
+
+.highlight-critical-successor-l1 {
+    background-color: var(--warm-orange) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.highlight-critical-successor-l2 {
+    background-color: var(--warm-deep-orange) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.highlight-critical-successor-l3 {
+    background-color: var(--warm-red) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.highlight-critical-successor-l4 {
+    background-color: var(--warm-magenta) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.highlight-critical-successor-l5 {
+    background-color: var(--warm-dark-purple) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.highlight-critical-successor-l6 {
+    background-color: var(--warm-depth-6) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.highlight-critical-successor-l7 {
+    background-color: var(--warm-depth-7) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.highlight-critical-successor-l8 {
+    background-color: var(--warm-depth-8) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.highlight-critical-successor-l9 {
+    background-color: var(--warm-depth-9) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.highlight-critical-successor-l10 {
+    background-color: var(--warm-depth-10) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
 /* Classes de Destaque (Dark Mode) */
+body.dark-mode .highlight-base {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+}
+
 body.dark-mode .highlight-hover {
     background-color: rgba(250, 204, 21, 0.2) !important;
     border-color: #facc15 !important;
@@ -273,6 +519,67 @@ body.dark-mode .highlight-successor-l2 {
     background-color: rgba(249, 115, 22, 0.25) !important;
     border-color: #fb923c !important;
     color: #fed7aa !important;
+}
+
+/* Dark mode for coreq critical highlights */
+body.dark-mode .highlight-critical-coreq-l1 {
+    background-color: rgba(232, 121, 249, 0.25) !important;
+    border-color: #e879f9 !important;
+    color: #f0abfc !important;
+}
+
+body.dark-mode .highlight-critical-coreq-l2 {
+    background-color: rgba(217, 70, 239, 0.3) !important;
+    border-color: #d946ef !important;
+    color: #e879f9 !important;
+}
+
+body.dark-mode .highlight-critical-coreq-l3 {
+    background-color: rgba(192, 38, 211, 0.35) !important;
+    border-color: #c026d3 !important;
+    color: #d946ef !important;
+}
+
+body.dark-mode .highlight-critical-coreq-l4 {
+    background-color: rgba(162, 28, 175, 0.4) !important;
+    border-color: #a21caf !important;
+    color: #c026d3 !important;
+}
+
+body.dark-mode .highlight-critical-coreq-l5 {
+    background-color: rgba(134, 25, 143, 0.45) !important;
+    border-color: #86198f !important;
+    color: #a21caf !important;
+}
+
+body.dark-mode .highlight-critical-coreq-l6 {
+    background-color: rgba(112, 26, 117, 0.5) !important;
+    border-color: #701a75 !important;
+    color: #86198f !important;
+}
+
+body.dark-mode .highlight-critical-coreq-l7 {
+    background-color: rgba(74, 4, 78, 0.55) !important;
+    border-color: #4a044e !important;
+    color: #701a75 !important;
+}
+
+body.dark-mode .highlight-critical-coreq-l8 {
+    background-color: rgba(59, 7, 100, 0.6) !important;
+    border-color: #3b0764 !important;
+    color: #4a044e !important;
+}
+
+body.dark-mode .highlight-critical-coreq-l9 {
+    background-color: rgba(46, 16, 101, 0.65) !important;
+    border-color: #2e1065 !important;
+    color: #3b0764 !important;
+}
+
+body.dark-mode .highlight-critical-coreq-l10 {
+    background-color: rgba(26, 11, 46, 0.7) !important;
+    border-color: #1a0b2e !important;
+    color: #2e1065 !important;
 }
 
 /* Cores da Legenda de Dependências (Modo Claro) */
@@ -326,30 +633,272 @@ body.dark-mode .legend-successor-l2 {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 5;
+    z-index: 15;
+    /* Passa o overlay pra trás do foco, mas na frente do fundo */
 }
 
 .connection-line {
     stroke-width: 2.5;
     fill: none;
-    stroke-dasharray: 8;
-    animation: dash 40s linear infinite;
+    stroke-dasharray: 10 6;
+    /* Cria um traçado estilo "formiga" */
+    animation: dash-forward 30s linear infinite;
+    /* Anima o traçado */
+    opacity: 0.85;
+    /* Leve transparência por padrão */
+    transition: opacity 0.3s ease;
 }
 
+/* Prerequisitos têm a animação no sentido oposto para indicar fluxo "para" o hover */
 .line-prereq {
     stroke: #6b7280;
+    animation: dash-backward 30s linear infinite;
+    opacity: 1;
+    /* Pré-requisitos mais sólidos */
 }
 
 .line-coreq {
     stroke: #c026d3;
+    stroke-dasharray: 6 6;
+    /* Correqs pontilhado diferente */
+    opacity: 0.9;
 }
 
 .line-successor-l1 {
     stroke: #d97706;
+    opacity: 1;
+    /* Sucessos L1 fortes */
 }
 
 .line-successor-l2 {
     stroke: #ea580c;
+    stroke-dasharray: 4 4;
+    /* L2 tracejado distante */
+    animation: dash-forward 40s linear infinite;
+    /* L2 Ligeiramente mais lento */
+    opacity: 0.6;
+    /* L2 mais transparente pra não poluir */
+}
+
+/* Critical Path Specific Lines */
+.line-critical-ancestor-l1 {
+    stroke: var(--cool-light-blue);
+    animation: dash-backward 30s linear infinite;
+    opacity: 1;
+}
+
+.line-critical-ancestor-l2 {
+    stroke: var(--cool-strong-blue);
+    animation: dash-backward 30s linear infinite;
+    opacity: 0.9;
+}
+
+.line-critical-ancestor-l3 {
+    stroke: var(--cool-indigo);
+    animation: dash-backward 30s linear infinite;
+    opacity: 0.8;
+}
+
+.line-critical-ancestor-l4 {
+    stroke: var(--cool-violet);
+    animation: dash-backward 30s linear infinite;
+    opacity: 0.7;
+}
+
+.line-critical-ancestor-l5 {
+    stroke: var(--cool-dark-purple);
+    animation: dash-backward 30s linear infinite;
+    opacity: 0.6;
+}
+
+.line-critical-ancestor-l6 {
+    stroke: var(--cool-depth-6);
+    animation: dash-backward 30s linear infinite;
+    opacity: 0.5;
+}
+
+.line-critical-ancestor-l7 {
+    stroke: var(--cool-depth-7);
+    animation: dash-backward 30s linear infinite;
+    opacity: 0.4;
+}
+
+.line-critical-ancestor-l8 {
+    stroke: var(--cool-depth-8);
+    animation: dash-backward 30s linear infinite;
+    opacity: 0.3;
+}
+
+.line-critical-ancestor-l9 {
+    stroke: var(--cool-depth-9);
+    animation: dash-backward 30s linear infinite;
+    opacity: 0.2;
+}
+
+.line-critical-ancestor-l10 {
+    stroke: var(--cool-depth-10);
+    animation: dash-backward 30s linear infinite;
+    opacity: 0.2;
+}
+
+.line-critical-coreq-l1 {
+    stroke: #c026d3;
+    stroke-dasharray: 6 6;
+    opacity: 0.9;
+}
+
+.line-critical-coreq-l2 {
+    stroke: #a21caf;
+    stroke-dasharray: 6 6;
+    opacity: 0.85;
+}
+
+.line-critical-coreq-l3 {
+    stroke: #86198f;
+    stroke-dasharray: 6 6;
+    opacity: 0.8;
+}
+
+.line-critical-coreq-l4 {
+    stroke: #701a75;
+    stroke-dasharray: 6 6;
+    opacity: 0.75;
+}
+
+.line-critical-coreq-l5 {
+    stroke: #4a044e;
+    stroke-dasharray: 6 6;
+    opacity: 0.7;
+}
+
+.line-critical-coreq-l6 {
+    stroke: #3b0764;
+    stroke-dasharray: 6 6;
+    opacity: 0.65;
+}
+
+.line-critical-coreq-l7 {
+    stroke: #2e1065;
+    stroke-dasharray: 6 6;
+    opacity: 0.6;
+}
+
+.line-critical-coreq-l8 {
+    stroke: #1a0b2e;
+    stroke-dasharray: 6 6;
+    opacity: 0.55;
+}
+
+.line-critical-coreq-l9 {
+    stroke: #120722;
+    stroke-dasharray: 6 6;
+    opacity: 0.5;
+}
+
+.line-critical-coreq-l10 {
+    stroke: #0a0414;
+    stroke-dasharray: 6 6;
+    opacity: 0.45;
+}
+
+.line-critical-successor-l1 {
+    stroke: var(--warm-orange);
+    animation: dash-forward 30s linear infinite;
+    opacity: 1;
+}
+
+.line-critical-successor-l2 {
+    stroke: var(--warm-deep-orange);
+    animation: dash-forward 30s linear infinite;
+    opacity: 0.9;
+}
+
+.line-critical-successor-l3 {
+    stroke: var(--warm-red);
+    animation: dash-forward 30s linear infinite;
+    opacity: 0.8;
+}
+
+.line-critical-successor-l4 {
+    stroke: var(--warm-magenta);
+    animation: dash-forward 30s linear infinite;
+    opacity: 0.7;
+}
+
+.line-critical-successor-l5 {
+    stroke: var(--warm-dark-purple);
+    animation: dash-forward 30s linear infinite;
+    opacity: 0.6;
+}
+
+.line-critical-successor-l6 {
+    stroke: var(--warm-depth-6);
+    animation: dash-forward 30s linear infinite;
+    opacity: 0.5;
+}
+
+.line-critical-successor-l7 {
+    stroke: var(--warm-depth-7);
+    animation: dash-forward 30s linear infinite;
+    opacity: 0.4;
+}
+
+.line-critical-successor-l8 {
+    stroke: var(--warm-depth-8);
+    animation: dash-forward 30s linear infinite;
+    opacity: 0.3;
+}
+
+.line-critical-successor-l9 {
+    stroke: var(--warm-depth-9);
+    animation: dash-forward 30s linear infinite;
+    opacity: 0.2;
+}
+
+.line-critical-successor-l10 {
+    stroke: var(--warm-depth-10);
+    animation: dash-forward 30s linear infinite;
+    opacity: 0.2;
+}
+
+body.dark-mode .line-critical-coreq-l1 {
+    stroke: #e879f9;
+}
+
+body.dark-mode .line-critical-coreq-l2 {
+    stroke: #d946ef;
+}
+
+body.dark-mode .line-critical-coreq-l3 {
+    stroke: #c026d3;
+}
+
+body.dark-mode .line-critical-coreq-l4 {
+    stroke: #a21caf;
+}
+
+body.dark-mode .line-critical-coreq-l5 {
+    stroke: #86198f;
+}
+
+body.dark-mode .line-critical-coreq-l6 {
+    stroke: #701a75;
+}
+
+body.dark-mode .line-critical-coreq-l7 {
+    stroke: #4a044e;
+}
+
+body.dark-mode .line-critical-coreq-l8 {
+    stroke: #3b0764;
+}
+
+body.dark-mode .line-critical-coreq-l9 {
+    stroke: #2e1065;
+}
+
+body.dark-mode .line-critical-coreq-l10 {
+    stroke: #1a0b2e;
 }
 
 body.dark-mode .line-prereq {
@@ -368,9 +917,17 @@ body.dark-mode .line-successor-l2 {
     stroke: #fb923c;
 }
 
-@keyframes dash {
+@keyframes dash-forward {
+    to {
+        stroke-dashoffset: -1000;
+        /* Move os traços pra 'frente' visualmente */
+    }
+}
+
+@keyframes dash-backward {
     to {
         stroke-dashoffset: 1000;
+        /* Move os traços pra 'trás' visualmente */
     }
 }
 

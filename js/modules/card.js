@@ -4,7 +4,8 @@
 import * as DOM from './dom.js';
 import { state } from './state.js';
 import { openModal } from './modal.js';
-import { highlightDependencies, clearDependencyHighlights } from './events.js';
+import { highlightDependencies, clearDependencyHighlights } from './dependencies.js';
+import { renderCriticalPath } from './criticalPath.js';
 import { getTextColorForBackground, getRgbColorFromTailwindClass } from './utils.js';
 
 // Cache para armazenar as cores já calculadas e evitar reprocessamento.
@@ -18,7 +19,7 @@ const colorCache = new Map();
 function createCourseCard(course) {
     const card = document.createElement('div');
     const colors = state.axisConfig[course.eixo] || { bg: "bg-gray-500", border: "border-gray-700" };
-    
+
     // Solução Inteligente:
     // 1. Pega a cor RGB da classe de fundo.
     const rgbColor = getRgbColorFromTailwindClass(colors.bg);
@@ -54,10 +55,33 @@ function createCourseCard(course) {
     title.append(fullNameSpan, shortNameSpan);
     card.append(chDiv, title);
 
+    // Timer properties for hover debounce
+    let hoverTimeout;
+
     // Event listeners
-    card.addEventListener('mouseenter', () => highlightDependencies(course.id));
-    card.addEventListener('mouseleave', clearDependencyHighlights);
-    card.addEventListener('focus', () => highlightDependencies(course.id));
+    card.addEventListener('mouseenter', () => {
+        hoverTimeout = setTimeout(() => {
+            if (state.criticalPathActive) {
+                renderCriticalPath(card); // Pass the card element directly as criticalPath expects
+            } else {
+                highlightDependencies(course.id);
+            }
+        }, 150); // 150ms debounce
+    });
+
+    card.addEventListener('mouseleave', () => {
+        clearTimeout(hoverTimeout);
+        clearDependencyHighlights();
+    });
+
+    card.addEventListener('focus', () => {
+        clearTimeout(hoverTimeout); // Just in case, to prevent double triggers
+        if (state.criticalPathActive) {
+            renderCriticalPath(card);
+        } else {
+            highlightDependencies(course.id);
+        }
+    });
     card.addEventListener('blur', clearDependencyHighlights);
     card.addEventListener('click', () => openModal('course-modal', course.id));
     card.addEventListener('keydown', (e) => {
@@ -89,7 +113,7 @@ export function renderGrid() {
 
         const periodTitle = document.createElement('h2');
         periodTitle.className = 'text-base font-bold mb-2 text-slate-700 text-center sticky top-0 bg-white py-1 z-10';
-        
+
         // Adiciona spans para o título completo e abreviado do período
         const fullTitleSpan = document.createElement('span');
         fullTitleSpan.className = 'period-full-title';
